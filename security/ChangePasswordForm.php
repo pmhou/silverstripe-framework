@@ -100,7 +100,10 @@ class ChangePasswordForm extends Form {
 			if($isValid->valid()) {
 				$member->logIn();
 				
-				// TODO Add confirmation message to login redirect
+				$this->clearMessage();
+				$this->sessionMessage(
+					_t('Member.SUBJECTPASSWORDCHANGED', 'Your password has been changed'),
+					'good');
 				Session::clear('AutoLoginHash');
 
 				// Clear locked out status
